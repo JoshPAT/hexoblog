@@ -6,3 +6,5 @@ node_modules/
 .deploy*/
 public/
 _config.yml~
+.gitignore
+.gitignore~
