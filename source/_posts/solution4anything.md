@@ -46,7 +46,7 @@ checkio(5) == ord # True
 |`>>`	|`object.__rshift__(self, other)`
 |`&`	|`object.__and__(self, other)`
 |`^`	|`object.__xor__(self, other)`
-|`or`[^1]	|`object.__or__(self, other)`
+|`or`*	|`object.__or__(self, other)`
 
 
 >扩展赋值运算符
@@ -64,7 +64,7 @@ checkio(5) == ord # True
 |`>>=`	|`object.__irshift__(self, other)`
 |`&=`	|`object.__iand__(self, other)`
 |`^=`	|`object.__ixor__(self, other)`
-|`or=`[^2]	|`object.__ior__(self, other)`
+|`or=`*	|`object.__ior__(self, other)`
 
 >位元运算符
 
@@ -154,9 +154,6 @@ NO WAY!!! :(
 
 使用魔术方法，我们能定义自己类中的操作，从而使得我们自己的方法就像类中自带的`built-in`方法。当然，魔法方法不仅仅局限于`自定义类中的运算符`，它还可以用于`描述类`、`属性访问控制`、`定义可调用对象`等等。
 
-[^1]:	这里`or`代表`或运算符 |`,因为markdown没有`|`的转义符，而markdown的table语法，`|`的功能是构建新的表格边框。
-[^2]: 同上。
-
 更多可以戳：
 
 [A Guide to Python's Magic Methods][1]
@@ -166,4 +163,5 @@ NO WAY!!! :(
 [1]:http://www.rafekettler.com/magicmethods.html#comparisons
 [2]:http://www.oschina.net/translate/python-magicmethods
 
-
+---
+[`*`]:	这里`or`代表`或运算符 |`，因为markdown没有`|`的转义符，所以在markdown的table语法中，`|`的功能是构建新的表格边框。这里正确的表达应该是`|=`。

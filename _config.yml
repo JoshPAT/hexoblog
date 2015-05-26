@@ -72,6 +72,4 @@ deploy:
   branch: master
 
 # Markdown Settings
-markdown: 
-  plugins:
-     - markdown-it-footnote
+markdown:  'default'
