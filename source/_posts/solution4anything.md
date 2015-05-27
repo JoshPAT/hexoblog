@@ -66,7 +66,7 @@ checkio(5) == ord # True
 |`^=`	|`object.__ixor__(self, other)`
 |`or=`*	|`object.__ior__(self, other)`
 
->位元运算符
+>一元运算符
 
 |**运算符**|**方法**
 |:---	|:------
