@@ -27,7 +27,7 @@ mathjax: true
 
 # Miscellaneous
 google_analytics: ''
-favicon: /favicon.png
+favicon: /favicon.ico
 
 #你的头像url
 avatar: "https://en.gravatar.com/userimage/87177847/9f41bd8145e833e43ab4594f2bbd9c7c.jpg?size=200"

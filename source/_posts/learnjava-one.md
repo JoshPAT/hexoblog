@@ -186,13 +186,11 @@ class BankATM{
 	}
 }
 //分别自定义两个异常类
-//
 class DataHouseException extends Exception {
 	public DataHouseException( String message ) {
 		super(message);
 	}
 }
-//
 class MyAppException extends Exception {
 	public MyAppException (String message){ 
 		super (message); 
@@ -251,5 +249,38 @@ if __name__ == '__main__':
 	'cannot find id'
 
 ### 6.4 断言及程序测试
+#### 1.断言
+`断言(assert)`其实就是一种调试或者测试程序一种手段。一般写法如下：
 
-### 6.5 程序调试
+assert 表达式；
+
+assert 表达式：信息；
+
+如果表示式不为true，程序就会异常并输出相关信息，这很好理解。
+
+#### 2.程序测试
+
+程序的修改是经常要进行的过程,必须保证程序在修改后其结果仍然是正确的。在编写程序代码的同时,还编写`测试代码`来判断这些程序是否正确。这个过程称为“测试驱动”的开发过程。
+
+程序测试保证了代码的质量,能减少后期的查错与调试的时间,所以实际上它提高了程序的开发效率。
+
+在Java中可以用JUnit框架来实现程序测试，其实有点类似python的unittest。
+在测试中常用的语句如下: 
+
+```java
+fail(信息); //表示程序出错  
+assertEqauls(参数1,参数2 ); //表示程序要保证两个参数要相等  
+assertNull(参数); //表示参数要为null 
+
+@Test
+public void testSum() {
+	Calculator a = new Calculator();
+	assertEquals(a.sum(0, 100), 100);
+	// fail("Not yet implemented");
+}
+public void testMultipy() {
+	Calculator a = new Calculator();
+	assertEquals(a.sum(0, 100), 0);
+	// fail("Not yet implemented");
+}
+```
