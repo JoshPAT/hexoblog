@@ -31,10 +31,10 @@ Product：抽象产品角色
 ConcreteProduct：具体产品角色
 具体产品角色是创建目标，所有创建的对象都充当这个角色的某个具体类的实例。
 
-##### 实例
+#### 实例
 
 <!--more-->
-```
+```python
 import random
 
 class Product(object):
@@ -79,7 +79,7 @@ Factory：抽象工厂
 ConcreteFactory：具体工厂
 
 #### 实例1
-```
+```python
 from __future__ import generators
 import random
 
@@ -149,7 +149,7 @@ for shape in shapes:
 
 该实例来自于Book: [Learning Python Design Patterns][5]的个人改编版, 但是个人觉得创建逻辑依旧是静态.
 
-```
+```python
 import abc
 
 class Factory(object):
@@ -202,9 +202,9 @@ if __name__ == '__main__':
     CarFactory.create()
 ```
 
-## Abstract Factory Pattern
+### Abstract Factory Pattern
 
-###  模式动机
+####  模式动机
 
 在工厂方法模式中具体工厂负责生产具体的产品，每一个具体工厂对应一种具体产品，工厂方法也具有唯一性，一般情况下，一个具体工厂中只有一个工厂方法或者一组重载的工厂方法。但是有时候我们需要一个工厂可以提供多个产品对象，而不是单一的产品对象。
 
@@ -219,10 +219,10 @@ if __name__ == '__main__':
 
 抽象工厂模式与工厂方法模式最大的区别在于，工厂方法模式针对的是一个产品等级结构，而抽象工厂模式则需要面对多个产品等级结构，一个工厂等级结构可以负责多个不同产品等级结构中的产品对象的创建 。当一个工厂等级结构可以创建出分属于不同产品等级结构的一个产品族中的所有对象时，抽象工厂模式比工厂方法模式更为简单、有效率。
 
-### 模式定义
+#### 模式定义
 抽象工厂模式(Abstract Factory Pattern)：提供一个创建一系列相关或相互依赖对象的接口，而无须指定它们具体的类。抽象工厂模式又称为Kit模式，属于对象创建型模式。
 
-### 模式结构
+#### 模式结构
 抽象工厂模式包含如下角色：
 
 AbstractFactory：抽象工厂
@@ -230,9 +230,9 @@ ConcreteFactory：具体工厂
 AbstractProduct：抽象产品
 Product：具体产品
 
-### 实例
+#### 实例
 
-```
+```python
 import abc
 import random
 
@@ -260,6 +260,7 @@ class HammerVR(VR):
         print('HammerVR is waiting for SickleVR') 
 
 # Abstract Factory
+# 定义抽象工厂的抽象产品族
 class Factory(object):
     __metaclass__ = abc.ABCMeta
 
@@ -270,6 +271,7 @@ class Factory(object):
     def makeVRGears(self): pass
 
 # Concrete factories:
+# 实例工厂完成其产品族的定义
 class SmartisanFactory(Factory):
     def makePhones(self): return SmartisanNut()
     def makeVRGears(self): return HammerVR()
@@ -282,13 +284,15 @@ class SamsungFactory(Factory):
 class Client:
     def __init__(self, factory):
         self.factory = factory
-        self.phone = factory.makePhones()
+        self.phone = factory.makePhones() # 获得完整产品
         self.vr = factory.makeVRGears()
 
     def play(self):
         self.phone.touch('home button')
         self.vr.wear()
         print(self.vr.wearable())
+
+
 if __name__ == '__main__':
     for _ in range(4):
         c = Client(random.choice(Factory.__subclasses__())())
@@ -318,6 +322,102 @@ ConcreteBuilder：具体建造者
 Director：指挥者
 Product：产品角色
 
+#### Builder和Factory的区别
+
+Builder角色扮演指挥者与建造者双重角色。
+
+建造者模式与抽象工厂模式的比较, 参考[StackOverflow][6]:
+
+ - 与抽象工厂模式相比， 建造者模式返回一个`组装`好的产品; 
+   而抽象工厂模式返回一系列相关的产品，这些产品位于不同的产品等级结构，构成了一个产品族。
+
+ - 在抽象工厂模式中，客户端实例化工厂类，然后调用工厂方法获取所需产品对象(all the parameters pass in on a single line);
+   在建造者模式中，客户端可以不直接调用建造者的相关方法，而是通过指挥者类来指导如何生成对象，包括对象的组装过程和建造步骤，它侧重于`一步步构造一个复杂对象`，返回一个完整的对象。
+   (use setter methods to slowly build up your parameter list)
+
+ - 如果将抽象工厂模式看成汽车配件生产工厂 ，生产一个产品族的产品，那么建造者模式就是一个汽车组装工厂，通过对部件的组装可以返回一辆完整的汽车。
+
+
+```
+# -*- coding: utf-8 -*-
+
+# Director
+# Director完成组装
+class Director(object):
+
+    def __init__(self):
+        self.builder = None
+
+    def construct_phone(self):
+        self.builder.new_phone()
+        self.builder.build_screen()
+        self.builder.build_cpu()
+
+    def get_phone(self):
+        return self.builder.phone
+
+
+# Abstract Builder
+# Builder对各个部件进行定义
+class Builder(object):
+
+    def __init__(self):
+        self.phone = None
+
+    def new_phone(self):
+        self.phone = Phone()
+
+    def build_screen(self):
+        raise NotImplementedError
+
+    def build_cpu(self):
+        raise NotImplementedError
+
+# Concrete Builder
+class BuilderIPhone(Builder):
+
+    def build_screen(self):
+        self.phone.screen = 'Retina HD display'
+
+    def build_cpu(self):
+        self.phone.cpu = 'A9 chip'
+
+
+class BuilderSmartisan(Builder):
+
+    def build_screen(self):
+        self.phone.screen = '康宁®第三代大猩猩®玻璃'
+
+    def build_cpu(self):
+        self.phone.cpu = 'Adreno™ 418'
+
+# Product
+# 先定义产品内部的部件
+class Phone(object):
+
+    def __init__(self):
+        self.screen = None
+        self.cpu = None
+
+    def __repr__(self):
+        return 'Screen: {0.screen} | CPU: {0.cpu}'.format(self)
+
+
+# Client
+if __name__ == "__main__":
+    print('Cool')
+    director = Director()
+    director.builder = BuilderIPhone()
+    director.construct_phone()
+    iphone = director.get_phone()
+    print(iphone)
+    director.builder = BuilderSmartisan()
+    director.construct_phone()
+    smartisan = director.get_phone()
+    print(smartisan)
+
+```
+
 
 
 TO Be Continued...
@@ -329,13 +429,12 @@ TO Be Continued...
 [Python 3 Patterns, Recipes and Idioms][3]
 [Github Python Patterns][4]
 
-
 [1]:http://design-patterns.readthedocs.org/zh_CN/latest/creational_patterns/creational.html
 [2]:https://www.packtpub.com/application-development/learning-python-design-patterns
 [3]:http://python-3-patterns-idioms-test.readthedocs.org/en/latest/index.html
 [4]:https://github.com/faif/python-patterns
 [5]:http://ebook-dl.com/item/learning-python-design-patterns-2013-gennadiy-zlobin/
-
+[6]:http://stackoverflow.com/questions/757743/what-is-the-difference-between-builder-design-pattern-and-factory-design-pattern
 
 
 
