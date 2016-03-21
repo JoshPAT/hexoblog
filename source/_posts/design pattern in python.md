@@ -418,6 +418,50 @@ if __name__ == "__main__":
 
 ```
 
+### Singleton
+
+#### 模式动机
+对于系统中的某些类来说，只有一个实例很重要，例如，一个系统中可以存在多个打印任务，但是只能有一个正在工作的任务；一个系统只能有一个窗口管理器或文件系统；一个系统只能有配置文件.
+
+如何保证一个类只有一个实例并且这个实例易于被访问呢？定义一个全局变量可以确保对象随时都可以被访问，但不能防止我们实例化多个对象。
+
+一个更好的解决办法是让类自身负责保存它的唯一实例。这个类可以保证没有其他实例被创建，并且它可以提供一个访问该实例的方法。这就是单例模式的模式动机。
+
+#### 模式定义
+单例模式(Singleton Pattern)：单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。
+
+单例模式的要点有三个：一是某个类只能有一个实例；二是它必须自行创建这个实例；三是它必须自行向整个系统提供这个实例。单例模式是一种对象创建型模式。单例模式又名单件模式或单态模式。
+
+#### 模式分析
+单例模式的目的是保证一个类仅有一个实例，并提供一个访问它的全局访问点。单例模式包含的角色只有一个，就是单例类——Singleton。单例类拥有一个私有构造函数，确保用户无法通过new关键字直接实例化它。除此之外，该模式中包含一个静态私有成员变量与静态公有的工厂方法，该工厂方法负责检验实例的存在性并实例化自己，然后存储在静态成员变量中，以确保只有一个实例被创建。
+
+在单例模式的实现过程中，需要注意如下三点：
+
+- 单例类的构造函数为私有；
+- 提供一个自身的静态私有成员变量；
+- 提供一个公有的静态工厂方法。
+
+#### 实例
+
+```python
+
+class Singleton(type):
+    _instances = {}
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
+        return cls._instances[cls]
+
+# python2
+class Setup(object):
+    __metaclass__ = Singleton
+    pass
+
+# python3
+class Setup(metaclass=Singleton):
+    pass
+
+```
 
 
 TO Be Continued...
@@ -428,6 +472,9 @@ TO Be Continued...
 [Learning Python Design Patterns][2]
 [Python 3 Patterns, Recipes and Idioms][3]
 [Github Python Patterns][4]
+[Understand __new__ in Python][7]
+[Objects and classes in Python][8]
+[Good Discussion of Singleton][9]
 
 [1]:http://design-patterns.readthedocs.org/zh_CN/latest/creational_patterns/creational.html
 [2]:https://www.packtpub.com/application-development/learning-python-design-patterns
@@ -435,6 +482,6 @@ TO Be Continued...
 [4]:https://github.com/faif/python-patterns
 [5]:http://ebook-dl.com/item/learning-python-design-patterns-2013-gennadiy-zlobin/
 [6]:http://stackoverflow.com/questions/757743/what-is-the-difference-between-builder-design-pattern-and-factory-design-pattern
-
-
-
+[7]:http://stackoverflow.com/questions/674304/pythons-use-of-new-and-init
+[8]:http://jfine-python-classes.readthedocs.org/en/latest/type-name-bases-dict.html
+[9]:http://stackoverflow.com/questions/6760685/creating-a-singleton-in-python?lq=1
