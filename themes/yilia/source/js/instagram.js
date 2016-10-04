@@ -136,7 +136,9 @@ var Instagram = (function(){
 				console.log("Please open 'http://jelled.com/instagram/lookup-user-id' to get your userid.");
 				return;
 			}
-			getList("https://api.instagram.com/v1/users/"+userid+"/media/recent/?client_id="+insid+"&count=100");
+			//getList("https://api.instagram.com/v1/users/"+userid+"/media/recent/?client_id="+insid+"&count=100");
+			getList("https://api.instagram.com/v1/users/self/media/recent/?access_token=1284828378.bba5fa9.2a0d8b15c636466e9f9e82a74f2ae990")
+
 			bind();
 		}
 	}
