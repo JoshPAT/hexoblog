@@ -21,6 +21,11 @@ subnav:
 
 rss: /atom.xml
 
+deploy:
+  type: git
+  repo: git@github.com:zh0uquan/zh0uquan.github.io.git
+  branch: master
+  
 # Content
 excerpt_link: more
 fancybox: true
