@@ -9,15 +9,15 @@ menu:
 # SubNav
 subnav:
   github: "https://github.com/zh0uquan"
-  weibo: "http://weibo.com/u/3503482562/home?wvr=5"
+  weibo: "https://weibo.com/u/3503482562"
   facebook: "https://www.facebook.com/quan.zhou.102"
   #rss: "#"
   #zhihu: "#"
-  #douban: "#"
-  #mail: "#"
+  douban: ""
+  mail: "zhouquan0x16@gmail.com"
   #google: "#"
   #twitter: "#"
-  #linkedin: "#"
+  linkedin: "https://www.linkedin.com/in/quan-zhou-960994134/"
 
 rss: /atom.xml
 
@@ -25,7 +25,7 @@ deploy:
   type: git
   repo: git@github.com:zh0uquan/zh0uquan.github.io.git
   branch: master
-  
+
 # Content
 excerpt_link: more
 fancybox: true
@@ -52,6 +52,9 @@ tagcloud: true
 
 #是否开启“关于我”。
 #不开启——
-#aboutme: false
+aboutme: true
 #开启——
-aboutme: 我就是我，是不一样的烟火...
+aboutme: Hi. I'm a developer from China.
+         Mainly developed Python, occasionally with Javascript.
+         I did my master in Europe, focus on Computer Networks and Distrubuted Systems.
+         My spare time is manily about video games, sometimes ski, also movies and tv-series.
