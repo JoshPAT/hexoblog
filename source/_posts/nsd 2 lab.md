@@ -401,4 +401,4 @@ average distance: 5.30820984910
 >
 
 -------
-[1]: https://github.com/JoshPAT/network-structure-and-dynamics/blob/master/exercise_3/models.py
+[1]: https://github.com/zh0uquan/network-structure-and-dynamics/blob/master/exercise_3/models.py
