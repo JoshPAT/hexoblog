@@ -7,4 +7,5 @@ node_modules/
 public/
 _config.yml~
 .gitignore
+.idea
 .gitignore~
