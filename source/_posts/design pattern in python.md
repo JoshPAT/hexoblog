@@ -41,10 +41,10 @@ class Product(object):
     types = []
 
 def factory(type):
-    
+
     class ProductA(Product):
         def use(self): print("ProductA being used")
-    
+
     class ProductB(Product):
         def use(self): print("ProductB being used")
 
@@ -85,7 +85,7 @@ import random
 
 class ShapeFactory:
     factories = {}
-    
+
     @staticmethod
     def addFactory(id, shapeFactory):
         ShapeFactory.factories.put[id] = shapeFactory
@@ -182,7 +182,7 @@ class MotorcycleFactory(Factory):
 
 class Vichel(object):
     __metaclass__ = abc.ABCMeta
-    
+
     @abc.abstractmethod
     def __str__(self):
         pass
@@ -257,7 +257,7 @@ class GearVR(VR):
 
 class HammerVR(VR):
     def wear(self):
-        print('HammerVR is waiting for SickleVR') 
+        print('HammerVR is waiting for SickleVR')
 
 # Abstract Factory
 # 定义抽象工厂的抽象产品族
@@ -265,7 +265,7 @@ class Factory(object):
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
-    def makePhones(self): pass 
+    def makePhones(self): pass
 
     @abc.abstractmethod
     def makeVRGears(self): pass
@@ -328,7 +328,7 @@ Builder角色扮演指挥者与建造者双重角色。
 
 建造者模式与抽象工厂模式的比较, 参考[StackOverflow][6]:
 
- - 与抽象工厂模式相比， 建造者模式返回一个`组装`好的产品; 
+ - 与抽象工厂模式相比， 建造者模式返回一个`组装`好的产品;
    而抽象工厂模式返回一系列相关的产品，这些产品位于不同的产品等级结构，构成了一个产品族。
 
  - 在抽象工厂模式中，客户端实例化工厂类，然后调用工厂方法获取所需产品对象(all the parameters pass in on a single line);
@@ -462,9 +462,6 @@ class Setup(metaclass=Singleton):
     pass
 
 ```
-
-
-TO Be Continued...
 
 参考资料:
 

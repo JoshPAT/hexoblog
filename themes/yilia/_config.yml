@@ -13,7 +13,7 @@ subnav:
   facebook: "https://www.facebook.com/quan.zhou.102"
   #rss: "#"
   #zhihu: "#"
-  douban: ""
+  douban: "https://www.douban.com/people/56951347/"
   mail: "zhouquan0x16@gmail.com"
   #google: "#"
   #twitter: "#"
@@ -52,9 +52,6 @@ tagcloud: true
 
 #是否开启“关于我”。
 #不开启——
-aboutme: true
+# aboutme: true
 #开启——
-aboutme: Hi. I'm a developer from China.
-         Mainly developed Python, occasionally with Javascript.
-         I did my master in Europe, focus on Computer Networks and Distrubuted Systems.
-         My spare time is manily about video games, sometimes ski, also movies and tv-series.
+aboutme: Hi. I'm a developer from China.Mainly developed Python, occasionally with Javascript. I did my master in Europe, focus on Computer Networks and Distrubuted Systems. My spare time is manily about video games, sometimes ski, also movies and tv-series.
